@@ -27,7 +27,7 @@ public class Student {
   }
 
   public static List<Student> all() {
-    String sql = "SELECT id, name FROM Students";
+    String sql = "SELECT id, name FROM student";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Student.class);
     }
@@ -46,7 +46,7 @@ public class Student {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO Students(name, doe) VALUES (:name, :doe)";
+      String sql = "INSERT INTO student(name, doe) VALUES (:name, :doe)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("doe", this.doe)
@@ -57,7 +57,7 @@ public class Student {
 
   public static Student find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM Students where id=:id";
+      String sql = "SELECT * FROM student where id=:id";
       Student student = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Student.class);
@@ -67,7 +67,7 @@ public class Student {
 
   public void addCourse(Course course) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO students_courses (student_id, course_id) VALUES (:student_id, :course_id)";
+      String sql = "INSERT INTO student_schedule (student_id, course_id) VALUES (:student_id, :course_id)";
       con.createQuery(sql)
         .addParameter("student_id", this.getId())
         .addParameter("course_id", course.getId())
@@ -77,7 +77,7 @@ public class Student {
 
   public List<Course> getCourses() {
     try(Connection con = DB.sql2o.open()){
-      String joinQuery = "SELECT course_id FROM students_courses WHERE student_id = :student_id";
+      String joinQuery = "SELECT course_id FROM student_schedule WHERE student_id = :student_id";
       List<Integer> courseIds = con.createQuery(joinQuery)
         .addParameter("student_id", this.getId())
         .executeAndFetch(Integer.class);
@@ -85,7 +85,7 @@ public class Student {
       List<Course> courses = new ArrayList<Course>();
 
       for (Integer courseId : courseIds) {
-        String courseQuery = "Select * From courses WHERE id = :courseId";
+        String courseQuery = "Select * From course WHERE id = :courseId";
         Course course = con.createQuery(courseQuery)
           .addParameter("courseId", courseId)
           .executeAndFetchFirst(Course.class);
@@ -97,12 +97,12 @@ public class Student {
 
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-      String deleteQuery = "DELETE FROM categories WHERE id = :id;";
+      String deleteQuery = "DELETE FROM student WHERE id = :id;";
         con.createQuery(deleteQuery)
           .addParameter("id", this.getId())
           .executeUpdate();
 
-      String joinDeleteQuery = "DELETE FROM students_courses WHERE student_id = :studentId";
+      String joinDeleteQuery = "DELETE FROM student_schedule WHERE student_id = :studentId";
         con.createQuery(joinDeleteQuery)
           .addParameter("studentId", this.getId())
           .executeUpdate();
