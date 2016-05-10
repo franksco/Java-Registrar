@@ -1,0 +1,17 @@
+<h1>All students</h1>
+
+<ul>
+  #foreach ($student in $students)
+    <li><a href="/students/$student.getId()">$student.getName()</a></li>
+  #end
+</ul>
+
+<p>Add a new student:</p>
+
+<form action="/students" method="post">
+  <label for="name">Student name</label>
+  <input id="name" name="name" type="text">
+<button type="submit" class="btn btn-success">Add Student</button>
+</form>
+
+<p><a href="/">Home</a></p>

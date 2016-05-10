@@ -1,18 +1,10 @@
-<!-- <h1>to do list</h1>
+<h1>Course Scheduling</h1>
 
-#foreach ($category in $categories)
-  <p><a href="/categories/$category.getId()">$category.getName()</a></p>
+#foreach ($student in $students)
+  <p><a href="/students/$student.getId()">$student.getName()</a></p>
 #end
 
+<h3>Course Scheduling</h3>
 
-<form action='/categories' method='post'>
-  <div class="form-group">
-    <label for="name">Enter a New Category:</label>
-    <input type= "text" class="form-control" id="name" name="name">
-  </div>
-  <button class="btn" type="submit">Submit</button>
-</form> -->
-<h1>Todo list!</h1>
-
-<h3><a href="/categories">Categories</a></h3>
-<h3><a href="/tasks">Tasks</a></h3>
+<h3><a href="/students">Students</a></h3>
+<h3><a href="/courses">Courses</a></h3>
