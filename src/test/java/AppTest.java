@@ -30,67 +30,68 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void categoryIsCreatedTest() {
+  public void studentIsCreatedTest() {
     goTo("http://localhost:4567/");
-    click("a", withText("Categories"));
-    fill("#name").with("Household chores");
+    click("a", withText("Students"));
+    fill("#name").with("billy");
     submit(".btn");
-    assertThat(pageSource()).contains("Household chores");
+    assertThat(pageSource()).contains("billy");
   }
 
   @Test
-  public void taskIsCreatedTest() {
+  public void courseIsCreatedTest() {
     goTo("http://localhost:4567/");
-    click("a", withText("Tasks"));
-    fill("#description").with("Mow the lawn");
+    click("a", withText("Courses"));
+    fill("#courseName").with("History");
+    fill("#courseNumber").with("HIST101");
     submit(".btn");
-    assertThat(pageSource()).contains("Mow the lawn");
+    assertThat(pageSource()).contains("HIST101");
   }
 
   @Test
-  public void categoryShowPageDisplaysName() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
+  public void studentShowPageDisplaysName() {
+    Student testStudent = new Student("Billy");
+    testStudent.save();
+    String url = String.format("http://localhost:4567/students/%d", testStudent.getId());
     goTo(url);
-    assertThat(pageSource()).contains("Household chores");
+    assertThat(pageSource()).contains("Billy");
   }
 
   @Test
-  public void taskShowPageDisplaysDescription() {
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
+  public void courseShowPageDisplaysDescription() {
+    Course testCourse = new Course("History");
+    testCourse.save();
+    String url = String.format("http://localhost:4567/courses/%d", testCourse.getId());
     goTo(url);
-    assertThat(pageSource()).contains("Mow the lawn");
+    assertThat(pageSource()).contains("History");
   }
-
-  @Test
-  public void taskIsAddedToCategory() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
-    goTo(url);
-    fillSelect("#task_id").withText("Mow the lawn");
-    submit(".btn");
-    assertThat(pageSource()).contains("<li>");
-    assertThat(pageSource()).contains("Mow the lawn");
-  }
-
-  @Test
-  public void categoryIsAddedToTask() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
-    goTo(url);
-    fillSelect("#category_id").withText("Household chores");
-    submit(".btn");
-    assertThat(pageSource()).contains("<li>");
-    assertThat(pageSource()).contains("Household chores");
-  }
+  //
+  // @Test
+  // public void taskIsAddedToCategory() {
+  //   Category testCategory = new Category("Household chores");
+  //   testCategory.save();
+  //   Task testTask = new Task("Mow the lawn");
+  //   testTask.save();
+  //   String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
+  //   goTo(url);
+  //   fillSelect("#task_id").withText("Mow the lawn");
+  //   submit(".btn");
+  //   assertThat(pageSource()).contains("<li>");
+  //   assertThat(pageSource()).contains("Mow the lawn");
+  // }
+  //
+  // @Test
+  // public void categoryIsAddedToTask() {
+  //   Category testCategory = new Category("Household chores");
+  //   testCategory.save();
+  //   Task testTask = new Task("Mow the lawn");
+  //   testTask.save();
+  //   String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
+  //   goTo(url);
+  //   fillSelect("#category_id").withText("Household chores");
+  //   submit(".btn");
+  //   assertThat(pageSource()).contains("<li>");
+  //   assertThat(pageSource()).contains("Household chores");
+  // }
 
 }

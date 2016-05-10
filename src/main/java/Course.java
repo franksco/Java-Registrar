@@ -8,7 +8,7 @@ public class Course {
   private String courseNumber;
 
   public Course(String courseName, String courseNumber) {
-    this.courseName = courseNumber;
+    this.courseName = courseName;
     this.courseNumber = courseNumber;
   }
 
@@ -25,7 +25,7 @@ public class Course {
   }
 
   public static List<Course> all() {
-    String sql = "SELECT id, courseNumber FROM course";
+    String sql = "SELECT *  FROM course";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Course.class);
     }
