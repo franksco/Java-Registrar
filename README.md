@@ -1,12 +1,12 @@
-# _{Java Registrar}_
+# Java Registrar
 
-#### _{enter in a student or college course}, {5/10/2016}_
+#### enter in a student or college course
 
-#### By _**{Cory Franks}**_
+#### By Cory Franks on 5/10/2016
 
 ## Description
 
-_{enter in a student or college course, you can also assign courses to students and vice versa.}_
+enter in a student or college course, you can also assign courses to students and vice versa.
 
 ## Setup/Installation Requirements
 
@@ -21,18 +21,25 @@ _{enter in a student or college course, you can also assign courses to students 
 
 ## Known Bugs
 
-_{No known bugs }_
+No known bugs
 
 ## Support and contact details
 
-_{You can contact Cory Franks at franksco39@gmail.com}_
+You can contact Cory Franks at franksco39@gmail.com
 
 ## Technologies Used
 
-_{Java, Spark, sql, gradle, velocity, fluentlenium, atom, and github}_
+* Java
+* Spark
+* SQL
+* Gradle
+* Velocity
+* Fluentlenium
+* Atom
+* Github
 
 ### License
 
-*{This is licensed under the MIT license.}*
+This is licensed under the MIT license.
 
-Copyright (c) 2016 {Cory Franks}
+Copyright (c) 2016 Cory Franks
